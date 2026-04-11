@@ -1,4 +1,6 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
 using System;
 using System.Collections.ObjectModel; 
@@ -14,7 +16,7 @@ public partial class MainWindow : Window
 
     private void InitializeComponent()
     {
-        throw new NotImplementedException();
+        AvaloniaXamlLoader.Load(this);
     }
 
     public ObservableCollection<Expense> MyExpenses { get; set; } = new ObservableCollection<Expense>();
@@ -43,9 +45,9 @@ public partial class MainWindow : Window
 }
 public class Expense
 {
-    public string Description { get; set; }
+    public string Description { get; set; } = string.Empty; 
     public double Amount { get; set; }
-    public string Category { get; set; }
+    public string Category { get; set; } = string.Empty;
     public override string ToString()
     {
         return $"{Description} - {Amount}€ ({Category})";

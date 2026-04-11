@@ -1,8 +1,21 @@
-<StackPanel Orientation="Vertical" Spacing="10" Margin="20">
-    
-    <TextBlock Text="Register Expenses" FontSize="20" HorizontalAlignment="Center"/>
-    <TextBox Name="txtDescription" Watermark="Output Description..."/>
-    <TextBox Name="txtAmount" Watermark="Amount (€)..."/>
-    <Button Name="btnAdd" Content="Add" HorizontalAlignment="Stretch"/>
-     
-</StackPanel>
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SmartExpenseLogger"
+        x:Class="SmartExpenseLogger.MainWindow"
+        x:DataType="local:MainWindow"
+        Title="Smart Expense Logger"
+        Width="400" Height="450">
+
+    <StackPanel Orientation="Vertical" Spacing="10" Margin="20">
+        <TextBlock Text="Register expenses" FontSize="20" HorizontalAlignment="Center"/>
+        
+        <TextBox Name="txtDescription" PlaceholderText="Describe Output..."/>
+        <TextBox Name="txtAmount" PlaceholderText="Ποσό (€)..."/>
+        
+        <Button Name="btnAdd" Content="Add" HorizontalAlignment="Stretch" Click="OnAddButtonClick"/>
+        
+        <ListBox ItemsSource="{Binding MyExpenses}" Height="200"/>
+        
+        <TextBlock Name="lblTotal" Text="Total: 0€" FontWeight="Bold"/>
+    </StackPanel>
+</Window>
