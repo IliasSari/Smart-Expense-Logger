@@ -1,5 +1,6 @@
 using Avalonia.Controls;
-using Avalonia.Interactivity; 
+using Avalonia.Interactivity;
+using System;
 using System.Collections.ObjectModel; 
 namespace SmartExpenseLogger;
 
@@ -10,6 +11,12 @@ public partial class MainWindow : Window
         InitializeComponent();
         DataContext = this;
     }
+
+    private void InitializeComponent()
+    {
+        throw new NotImplementedException();
+    }
+
     public ObservableCollection<Expense> MyExpenses { get; set; } = new ObservableCollection<Expense>();
     public void OnAddButtonClick(object sender, RoutedEventArgs e)
     {
