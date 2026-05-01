@@ -3,11 +3,18 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
 using System;
+using System.Collections.Generic; 
 using System.Collections.ObjectModel; 
+
 namespace SmartExpenseLogger;
 
 public partial class MainWindow : Window
 {
+    public List<string> Categories { get; set; } = new List<string> 
+    { 
+        "Food", "Transport", "Entertainment", "Home", "Other" 
+    };
+    public ObservableCollection<Expense> MyExpenses { get; set; } = new ObservableCollection<Expense>();
     public MainWindow()
     {
         InitializeComponent();
@@ -19,22 +26,21 @@ public partial class MainWindow : Window
         AvaloniaXamlLoader.Load(this);
     }
 
-    public ObservableCollection<Expense> MyExpenses { get; set; } = new ObservableCollection<Expense>();
     public void OnAddButtonClick(object sender, RoutedEventArgs e)
     {
         var descInput = this.FindControl<TextBox>("txtDescription");
         var amountInput = this.FindControl<TextBox>("txtAmount");
+        var comboInput = this.FindControl<ComboBox>("cmbCategory");
 
-        if (descInput == null || amountInput == null) return;
-        if (string.IsNullOrWhiteSpace(descInput.Text) || string.IsNullOrWhiteSpace(amountInput.Text))
+        if (string.IsNullOrWhiteSpace(descInput?.Text) || string.IsNullOrWhiteSpace(amountInput?.Text))
             return;
         if (double.TryParse(amountInput.Text, out double parsedAmount))
         {
             var newExpense = new Expense 
             { 
                 Description = descInput.Text, 
-                Amount = double.Parse(amountInput.Text),
-                Category = "General" 
+                Amount = parsedAmount,
+                Category = comboInput?.SelectedItem?.ToString() ?? "General" 
             };
 
             MyExpenses.Add(newExpense);

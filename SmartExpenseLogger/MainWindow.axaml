@@ -8,7 +8,10 @@
 
     <StackPanel Orientation="Vertical" Spacing="10" Margin="20">
         <TextBlock Text="Register expenses" FontSize="20" HorizontalAlignment="Center"/>
-        
+        <ComboBox Name="cmbCategory" 
+              ItemsSource="{Binding Categories}" 
+              PlaceholderText="Επιλέξτε Κατηγορία"
+              HorizontalAlignment="Stretch"/>
         <TextBox Name="txtDescription" PlaceholderText="Describe Output..."/>
         <TextBox Name="txtAmount" PlaceholderText="Ποσό (€)..."/>
         
